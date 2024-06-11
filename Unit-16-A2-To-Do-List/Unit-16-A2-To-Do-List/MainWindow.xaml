@@ -1,0 +1,48 @@
+﻿<Window x:Class="Unit_16_A2_To_Do_List.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Unit_16_A2_To_Do_List"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <DockPanel LastChildFill="True">
+        <Grid DockPanel.Dock="Top" Margin="8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="addButton" Content="Add" Grid.Column="0" Width="80" Height="36" Click="AddButton_Click"/>
+            <Button x:Name="editButton" Content="Edit" Grid.Column="1" Width="80" Height="36" Click="EditButton_Click"/>
+            <Button x:Name="deleteButton" Content="Delete" Grid.Column="2" Width="80" Height="36" Click="DeleteButton_Click"/>
+            <CheckBox x:Name="showAllCheckBox" Content="Show All" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Checked="ShowAllCheckBox_Checked" Unchecked="ShowAllCheckBox_Checked"/>
+        </Grid>
+        <ListView x:Name="masterList" Margin="8" SelectionChanged="MasterList_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Title" DisplayMemberBinding="{Binding Title}" Width="150"/>
+                    <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" Width="200"/>
+                    <GridViewColumn Header="Due Date" DisplayMemberBinding="{Binding DueDate, StringFormat={}{0:dd/MM/yyyy}}" Width="100"/>
+                    <GridViewColumn Header="Completed" DisplayMemberBinding="{Binding IsDone}" Width="80"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Grid x:Name="detailView" Margin="10">
+            <TextBlock Text="Title:" Margin="0,10,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="titleField" Margin="70,10,10,0" Height="26" VerticalAlignment="Top"/>
+
+            <TextBlock Text="Description:" Margin="0,50,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="descriptionField" Margin="70,50,10,0" Height="60" VerticalAlignment="Top"/>
+
+            <TextBlock Text="Due Date:" Margin="0,130,0,0" VerticalAlignment="Top"/>
+            <DatePicker x:Name="dueDatePicker" Margin="70,130,10,0" VerticalAlignment="Top"/>
+
+            <TextBlock Text="Done?" Margin="0,170,0,0" VerticalAlignment="Top"/>
+            <CheckBox x:Name="isDoneCheckbox" Margin="70,170,0,0" VerticalAlignment="Top"/>
+        </Grid>
+    </DockPanel>
+</Window>
+
